@@ -1,0 +1,14 @@
+{
+  "extensionName": {
+    "message": "DM Bot Extension",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Quickly send DMs to Instagram creators from their profile pages",
+    "description": "Description of the extension"
+  },
+  "openWithDmBot": {
+    "message": "Send Quick DM",
+    "description": "Button text to open DM"
+  }
+}
