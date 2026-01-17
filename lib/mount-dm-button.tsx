@@ -1,4 +1,3 @@
-import { createShadowRootUi } from 'wxt/client';
 import { createRoot } from 'react-dom/client';
 import DMButton from '~/components/DMButton';
 
@@ -16,12 +15,7 @@ export async function mountDMButton(ctx: any): Promise<any> {
       position: 'inline',
       anchor: header,
       append: 'last',
-      onMount: (shadowRoot: ShadowRoot) => {
-        // Create container
-        const container = document.createElement('div');
-        container.className = 'dm-bot-container';
-        shadowRoot.appendChild(container);
-
+      onMount: (uiContainer: HTMLElement, shadow: ShadowRoot) => {
         // Add scoped styles
         const style = document.createElement('style');
         style.textContent = `
@@ -30,10 +24,10 @@ export async function mountDMButton(ctx: any): Promise<any> {
             margin-left: 8px;
           }
         `;
-        shadowRoot.appendChild(style);
+        shadow.appendChild(style);
 
         // Create React root
-        const root = createRoot(container);
+        const root = createRoot(uiContainer);
         root.render(<DMButton />);
 
         return root;

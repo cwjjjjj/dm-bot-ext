@@ -1,118 +1,38 @@
-function App() {
+import { useState } from 'react';
+import Sidebar from '~/components/popup/Sidebar';
+import HomePage from '~/components/popup/HomePage';
+import QuickDMPage from '~/components/popup/QuickDMPage';
+import ListsPage from '~/components/popup/ListsPage';
+import TemplatesPage from '~/components/popup/TemplatesPage';
+import LogsPage from '~/components/popup/LogsPage';
+import SettingsPage from '~/components/popup/SettingsPage';
+import type { Page } from '~/components/popup/Sidebar';
+
+export default function App() {
+  const [currentPage, setCurrentPage] = useState<Page>('home');
+
   return (
     <div
       style={{
-        width: '320px',
-        padding: '20px',
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+        display: 'flex',
+        width: '800px',
+        height: '600px',
+        backgroundColor: 'white',
+        overflow: 'hidden',
       }}
     >
-      <header
-        style={{
-          marginBottom: '20px',
-          textAlign: 'center',
-        }}
-      >
-        <h1
-          style={{
-            fontSize: '20px',
-            fontWeight: 700,
-            margin: 0,
-            color: '#1a1a1a',
-          }}
-        >
-          DM Bot Extension
-        </h1>
-        <p
-          style={{
-            fontSize: '14px',
-            color: '#666',
-            margin: '8px 0 0 0',
-          }}
-        >
-          Quick DM for Instagram
-        </p>
-      </header>
+      {/* Sidebar */}
+      <Sidebar currentPage={currentPage} onPageChange={setCurrentPage} />
 
-      <main>
-        <section
-          style={{
-            backgroundColor: '#f8f8f8',
-            borderRadius: '12px',
-            padding: '16px',
-            marginBottom: '16px',
-          }}
-        >
-          <h2
-            style={{
-              fontSize: '14px',
-              fontWeight: 600,
-              margin: '0 0 12px 0',
-              color: '#333',
-            }}
-          >
-            How to Use
-          </h2>
-          <ol
-            style={{
-              fontSize: '13px',
-              color: '#555',
-              padding: '0 0 0 20px',
-              margin: 0,
-              lineHeight: '1.6',
-            }}
-          >
-            <li>Visit any Instagram profile</li>
-            <li>Click the "Quick DM" button</li>
-            <li>Send your message instantly!</li>
-          </ol>
-        </section>
-
-        <section
-          style={{
-            backgroundColor: '#f8f8f8',
-            borderRadius: '12px',
-            padding: '16px',
-          }}
-        >
-          <h2
-            style={{
-              fontSize: '14px',
-              fontWeight: 600,
-              margin: '0 0 12px 0',
-              color: '#333',
-            }}
-          >
-            Features
-          </h2>
-          <ul
-            style={{
-              fontSize: '13px',
-              color: '#555',
-              padding: '0 0 0 20px',
-              margin: 0,
-              lineHeight: '1.6',
-            }}
-          >
-            <li>Quick DM button on profiles</li>
-            <li>Quick message templates</li>
-            <li>Works on Chrome, Firefox, Edge</li>
-          </ul>
-        </section>
+      {/* Main Content */}
+      <main style={{ flex: 1, overflow: 'hidden' }}>
+        {currentPage === 'home' && <HomePage onNavigate={setCurrentPage} />}
+        {currentPage === 'quick-dm' && <QuickDMPage onNavigate={setCurrentPage} />}
+        {currentPage === 'lists' && <ListsPage />}
+        {currentPage === 'templates' && <TemplatesPage />}
+        {currentPage === 'logs' && <LogsPage />}
+        {currentPage === 'settings' && <SettingsPage />}
       </main>
-
-      <footer
-        style={{
-          marginTop: '20px',
-          textAlign: 'center',
-          fontSize: '12px',
-          color: '#999',
-        }}
-      >
-        Version 1.0.0
-      </footer>
     </div>
   );
 }
-
-export default App;

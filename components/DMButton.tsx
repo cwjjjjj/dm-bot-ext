@@ -105,7 +105,7 @@ export default function DMButton() {
               Let's collaborate! 🤝
             </button>
           </div>
-        </button>
+        </div>
       )}
     </div>
   );

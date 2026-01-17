@@ -8,7 +8,7 @@ export default defineConfig({
     description: '__MSG_extensionDescription__',
     default_locale: 'en',
     version: '1.0.0',
-    permissions: ['storage', 'activeTab'],
+    permissions: ['storage', 'activeTab', 'tabs', 'alarms', 'notifications'],
     host_permissions: ['https://*.instagram.com/*'],
     action: {
       default_popup: 'popup.html',
